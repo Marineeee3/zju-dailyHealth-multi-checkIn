@@ -14,12 +14,13 @@ jobs:
   ClockIn:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    matrix:
-      include:
-        - username: ACCOUNT
-          password: PASSWORD
-        - username: ACCOUNT2
-          password: PASSWORD2
+    strategy:
+      matrix:
+        include:
+          - username: ACCOUNT
+            password: PASSWORD
+          - username: ACCOUNT2
+            password: PASSWORD2
     steps:
       - name: Checkout
         uses: actions/checkout@master
