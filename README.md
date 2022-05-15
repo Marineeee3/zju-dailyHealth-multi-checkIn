@@ -26,7 +26,7 @@ Make sure the `username` &`password` variables under `jobs.HealthCheckIn.strateg
 Go to __"Action"__ -> __"HealthCheckIn"__ -> __"Run workflow"__ to trigger this workflow.
 <img src="https://s2.loli.net/2022/05/15/uXkIRCFmJxYpc72.png" width="600px">
 
-Another method to trigger it is by clicking the [![Star on GitHub](https://img.shields.io/github/stars/jonsn0w/hyde.svg?style=social)](https://github.com/jonsn0w/hyde/stargazers) button: star it and unstar it again.
+Another method to trigger it is by clicking the ![Star on GitHub](https://img.shields.io/github/stars/jonsn0w/hyde.svg?style=social) button: star it and unstar it again.
 ### Step5
 Click the action link to check the action results
 <img src="https://s2.loli.net/2022/05/15/FQe7gUsLYAd6VPI.png" width="600px">
