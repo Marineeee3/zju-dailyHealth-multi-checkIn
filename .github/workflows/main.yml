@@ -36,4 +36,4 @@ jobs:
           ACCOUNT: ${{ secrets[matrix.username] }}
           PASSWORD: ${{ secrets[matrix.password] }}
         run: |
-          python3 clock-in.py ${ACCOUNT} ${PASSWORD}
+          python3 check-in.py ${ACCOUNT} ${PASSWORD}
