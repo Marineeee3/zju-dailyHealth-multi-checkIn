@@ -1,4 +1,4 @@
-name: ClockIn
+name: HealthCheckIn
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
     - cron: 0 */8 * * *
 
 jobs:
-  ClockIn:
+  HealthCheckIn:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     strategy:
