@@ -22,8 +22,6 @@ jobs:
             password: PASSWORD
           - username: ACCOUNT2
             password: PASSWORD2
-          - username: ACCOUNT3
-            password: PASSWORD3
           - username: ACCOUNT4
             password: PASSWORD4
           - username: ACCOUNT5
