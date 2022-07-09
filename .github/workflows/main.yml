@@ -20,6 +20,8 @@ jobs:
         include:
           - username: HUAN_ACOUNT
             password: HUAN_PSW
+          - username: YUAN_ACCOUNT
+            password: YUAN_PSW
     steps:
       - name: Checkout
         uses: actions/checkout@master
