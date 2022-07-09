@@ -8,7 +8,7 @@ on:
     types: started
   workflow_dispatch:
   schedule:
-  # 2am & 23am UTC correspond to 10am & 7am
+    # 2am & 23am UTC correspond to 10am & 7am
     - cron: 0 2,23 * * *
 
 jobs:
@@ -18,10 +18,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - username: ACCOUNT
-            password: PASSWORD
-          - username: ACCOUNT2
-            password: PASSWORD2
+          - username: HUAN_ACOUNT
+            password: HUAN_PSW
     steps:
       - name: Checkout
         uses: actions/checkout@master
