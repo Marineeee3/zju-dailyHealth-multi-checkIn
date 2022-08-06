@@ -18,8 +18,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - username: HUAN_ACOUNT
-            password: HUAN_PSW
           - username: YUAN_ACCOUNT
             password: YUAN_PSW
     steps:
