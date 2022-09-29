@@ -14,12 +14,9 @@ on:
 jobs:
   HealthCheckIn:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     strategy:
       matrix:
         include:
-          - username: HUAN_ACOUNT
-            password: HUAN_PSW
           - username: YUAN_ACCOUNT
             password: YUAN_PSW
     steps:
