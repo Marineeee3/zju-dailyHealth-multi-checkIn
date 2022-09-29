@@ -8,7 +8,7 @@ import re
 import datetime
 import time
 import sys
-import ddddocr
+# import ddddocr
 
 
 class ClockIn(object):
@@ -34,7 +34,7 @@ class ClockIn(object):
         self.username = username
         self.password = password
         self.sess = requests.Session()
-        self.ocr = ddddocr.DdddOcr()
+        # self.ocr = ddddocr.DdddOcr()
 
     def login(self):
         """Login to ZJU platform"""
@@ -71,12 +71,12 @@ class ClockIn(object):
         today = datetime.date.today()
         return "%4d%02d%02d" % (today.year, today.month, today.day)
 
-    def get_captcha(self):
-        """Get CAPTCHA code"""
-        resp = self.sess.get(self.CAPTCHA_URL)
-        captcha = self.ocr.classification(resp.content)
-        print("验证码：", captcha)
-        return captcha
+    # def get_captcha(self):
+    #     """Get CAPTCHA code"""
+    #     resp = self.sess.get(self.CAPTCHA_URL)
+    #     captcha = self.ocr.classification(resp.content)
+    #     print("验证码：", captcha)
+    #     return captcha
 
     def get_info(self, html=None):
         """Get hitcard info, which is the old info with updated new time."""
@@ -85,14 +85,14 @@ class ClockIn(object):
             html = res.content.decode()
 
         try:
-            old_infos = re.findall(r'oldInfo: ({[^\n]+})', html)
-            if len(old_infos) != 0:
-                old_info = json.loads(old_infos[0])
-            else:
-                raise RegexMatchError("未发现缓存信息，请先至少手动成功打卡一次再运行脚本")
+            # old_infos = re.findall(r'oldInfo: ({[^\n]+})', html)
+            # if len(old_infos) != 0:
+            #     old_info = json.loads(old_infos[0])
+            # else:
+            #     raise RegexMatchError("未发现缓存信息，请先至少手动成功打卡一次再运行脚本")
 
             new_info_tmp = json.loads(re.findall(r'def = ({[^\n]+})', html)[0])
-            new_id = new_info_tmp['id']
+            # new_id = new_info_tmp['id']
             name = re.findall(r'realname: "([^\"]+)",', html)[0]
             number = re.findall(r"number: '([^\']+)',", html)[0]
         except IndexError:
@@ -100,11 +100,12 @@ class ClockIn(object):
         except json.decoder.JSONDecodeError:
             raise DecodeError('JSON decode error')
 
-        new_info = old_info.copy()
-        new_info['id'] = new_id
+        # new_info = old_infos.copy()
+        new_info = new_info_tmp.copy()
+        # new_info['id'] = new_id
         new_info['name'] = name
         new_info['number'] = number
-        new_info["date"] = new_info_tmp['date']  # self.get_date()
+        # new_info["date"] = new_info_tmp['date']  # self.get_date()
         new_info["created"] = round(time.time())
         # new_info["address"] = "浙江省杭州市西湖区"
         # new_info["area"] = "浙江省 杭州市 西湖区"
@@ -112,15 +113,13 @@ class ClockIn(object):
         # new_info["city"] = new_info["area"].split(' ')[1]
 
         # form change
-        new_info['jrdqtlqk[]'] = 0
-        # new_info['jrdqjcqk[]'] = 0
         new_info['sfsqhzjkk'] = 1   # 是否申领杭州健康码
-        new_info['sqhzjkkys'] = 1   # 杭州健康吗颜色，1:绿色 2:红色 3:黄色
-        # new_info['sfqrxxss'] = 1    # 是否确认信息属实
-        new_info['jcqzrq'] = ""
-        new_info['gwszdd'] = ""
+        new_info['sqhzjkkys'] = 1   # 杭州健康码，1:绿 2:红 3:黄 4:橙 5:无
+        new_info['sfqrxxss'] = 1    # 是否确认信息属实
+        # new_info['jcqzrq'] = ""
+        # new_info['gwszdd'] = ""
         new_info['szgjcs'] = ""
-        new_info['verifyCode'] = self.get_captcha()
+        # new_info['verifyCode'] = self.get_captcha()
         # new_info['internship'] = 1  # 1:否   2:校内实习  3:校外实习
 
         # 2021.08.05 Fix 2
