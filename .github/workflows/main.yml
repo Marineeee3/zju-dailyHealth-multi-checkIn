@@ -17,8 +17,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - username: YUAN_ACCOUNT
-            password: YUAN_PSW
+          - username: NAME
+            password: CODE
     steps:
       - name: Checkout
         uses: actions/checkout@master
