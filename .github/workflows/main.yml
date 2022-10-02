@@ -8,8 +8,8 @@ on:
     types: started
   workflow_dispatch:
   schedule:
-    # 2am & 4am UTC correspond to 10am & 12pm
-    - cron: 0 2,4 * * *
+    # 2am & 4am UTC correspond to 8am & 12pm
+    - cron: 0 0,4 * * *
 
 jobs:
   HealthCheckIn:
